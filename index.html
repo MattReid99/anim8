@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anim8 - Video to FBX Animation Converter</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        
+        .tagline {
+            font-size: 1.25rem;
+            color: #666666;
+            margin-bottom: 3rem;
+            font-weight: 400;
+        }
+        
+        .email-form {
+            display: flex;
+            gap: 0.5rem;
+            max-width: 500px;
+            margin: 0 auto 1rem;
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 0.875rem 1rem;
+            font-size: 1rem;
+            border: 1px solid #000000;
+            background: #ffffff;
+            color: #000000;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .email-input:focus {
+            outline: 2px solid #000000;
+            outline-offset: -2px;
+        }
+        
+        .email-input::placeholder {
+            color: #999999;
+        }
+        
+        .btn {
+            padding: 0.875rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.2s ease;
+        }
+        
+        .btn-primary {
+            background: #000000;
+            color: #ffffff;
+        }
+        
+        .btn-primary:hover {
+            background: #333333;
+        }
+        
+        .email-subtext {
+            color: #999999;
+            font-size: 0.875rem;
+        }
+        
+        .message {
+            margin-top: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            text-align: center;
+        }
+        
+        .message-success {
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #4caf50;
+        }
+        
+        .message-error {
+            background: #ffebee;
+            color: #c62828;
+            border: 1px solid #f44336;
+        }
+        
+        .btn-primary:disabled {
+            background: #999999;
+            cursor: not-allowed;
+        }
+        
+        .section {
+            padding: 5rem 0;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .feature {
+            text-align: center;
+        }
+        
+        .feature-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-desc {
+            color: #666666;
+            font-size: 0.9375rem;
+        }
+        
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+        
+        .step-number {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .step-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .step-desc {
+            color: #666666;
+            font-size: 0.9375rem;
+        }
+        
+        .format-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+        }
+        
+        .format-item {
+            padding: 0.5rem 1rem;
+            border: 1px solid #000000;
+            font-size: 0.875rem;
+        }
+        
+        .cta-section {
+            padding: 5rem 0;
+            text-align: center;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .cta-title {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-text {
+            font-size: 1.125rem;
+            color: #666666;
+            margin-bottom: 2rem;
+        }
+        
+        footer {
+            padding: 2rem 0;
+            border-top: 1px solid #e0e0e0;
+            text-align: center;
+            color: #666666;
+            font-size: 0.875rem;
+        }
+        
+        @media (max-width: 768px) {
+            .logo {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.125rem;
+            }
+            
+            .email-form {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
+            }
+            
+            .cta-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="logo">anim8</h1>
+                <p class="tagline">Transform any video into game-ready FBX animations</p>
+                <form class="email-form" id="waitlistForm">
+                    <input type="email" class="email-input" id="emailInput" placeholder="Enter your email" required>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">Join Waitlist</button>
+                </form>
+                <p class="email-subtext">Be the first to know when we launch</p>
+                <div id="message" class="message" style="display: none;"></div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="feature-grid">
+                <div class="feature">
+                    <h3 class="feature-title">Unity & Unreal Ready</h3>
+                    <p class="feature-desc">
+                        Export animations that work seamlessly with major game engines
+                    </p>
+                </div>
+                
+                <div class="feature">
+                    <h3 class="feature-title">Fast Processing</h3>
+                    <p class="feature-desc">
+                        Convert hours of manual work into minutes with AI-powered pipeline
+                    </p>
+                </div>
+                
+                <div class="feature">
+                    <h3 class="feature-title">Motion Capture Quality</h3>
+                    <p class="feature-desc">
+                        Get mocap-quality results without expensive equipment
+                    </p>
+                </div>
+                
+                <div class="feature">
+                    <h3 class="feature-title">Blender Integration</h3>
+                    <p class="feature-desc">
+                        Import directly into Blender for retargeting and refinement
+                    </p>
+                </div>
+                
+                <div class="feature">
+                    <h3 class="feature-title">Batch Processing</h3>
+                    <p class="feature-desc">
+                        Convert multiple videos at once for extensive animation libraries
+                    </p>
+                </div>
+                
+                <div class="feature">
+                    <h3 class="feature-title">Universal Format Support</h3>
+                    <p class="feature-desc">
+                        Works with any video format, export to FBX, GLB, or other standards
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">How It Works</h2>
+            <div class="workflow-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Upload Video</h3>
+                    <p class="step-desc">
+                        Drop your video file or paste a URL
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">AI Processing</h3>
+                    <p class="step-desc">
+                        Extract motion data and convert to skeletal animation
+                    </p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Download FBX</h3>
+                    <p class="step-desc">
+                        Get your animation file ready for any 3D software
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Compatible With</h2>
+            <div class="format-list">
+                <div class="format-item">FBX</div>
+                <div class="format-item">GLB</div>
+                <div class="format-item">Unity</div>
+                <div class="format-item">Unreal Engine</div>
+                <div class="format-item">Blender</div>
+                <div class="format-item">Maya</div>
+                <div class="format-item">3DS Max</div>
+                <div class="format-item">Godot</div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 anim8. Built for game developers.</p>
+        </div>
+    </footer>
+    
+    <script>
+        const LAMBDA_URL = 'https://gbrxrsb36xntorcox5rlgiaf7e0kqoer.lambda-url.us-east-2.on.aws/';
+        const PRODUCT_NAME = 'anim8';
+        
+        const form = document.getElementById('waitlistForm');
+        const emailInput = document.getElementById('emailInput');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageDiv = document.getElementById('message');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = emailInput.value.trim();
+            
+            if (!email) {
+                showMessage('Please enter a valid email address.', 'error');
+                return;
+            }
+            
+            // Disable button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Joining...';
+            hideMessage();
+            
+            try {
+                const response = await fetch(LAMBDA_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        email: email,
+                        productName: PRODUCT_NAME,
+                        source: 'landing_page'
+                    })
+                });
+                
+                if (response.ok) {
+                    showMessage('Successfully joined the waitlist! We\'ll be in touch soon.', 'success');
+                    emailInput.value = '';
+                } else {
+                    const errorData = await response.json().catch(() => ({}));
+                    const errorMessage = errorData.error || errorData.message || 'Something went wrong. Please try again.';
+                    showMessage(errorMessage, 'error');
+                }
+            } catch (error) {
+                console.error('Error submitting to waitlist:', error);
+                showMessage('Failed to connect. Please check your connection and try again.', 'error');
+            } finally {
+                // Re-enable button
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Join Waitlist';
+            }
+        });
+        
+        function showMessage(text, type) {
+            messageDiv.textContent = text;
+            messageDiv.className = `message message-${type}`;
+            messageDiv.style.display = 'block';
+        }
+        
+        function hideMessage() {
+            messageDiv.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
